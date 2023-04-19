@@ -1,14 +1,17 @@
 <template>
     <div class="logo">
-            <img src="../static/x.png" alt="">
-        <h2></h2>
+        <img src="../static/images/logo.png" alt="">
+        <h1>HỆ THỐNG QUẢN LÝ HỒ SƠ ĐIỆN TỬ CÔNG DÂN</h1>
     </div>
-    
 </template>
 
 <script>
 export default {
-  
+  data(){
+    return{
+      name:'Nhan'
+    }
+  }
 }
 </script>
 
@@ -24,19 +27,19 @@ html{
 }
 
 .logo{
-  
+  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  top: 30px;
+  top: 0;
   right: 0;
-  left: 60px;
+  left: 0;
 }
 
 img{
   width: 120px;
   height: auto;
-  padding: 10px ;
+  padding: 10px 0;
   margin-right: 50px;
 }
 
@@ -44,6 +47,5 @@ img{
   font-size: 30px;
   font-weight: 660;
 }
-
 
 </style>
