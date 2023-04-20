@@ -1,65 +1,58 @@
 <template>
-    <div class="container">
-      <div class="content">
-        <form class="form">
-            <h2>Đổi Mật khẩu</h2>
-           
-            <p>Mật khẩu cũ</p>
-            <input type="password" v-model="changePass.oldPassword" class="pass"  placeholder="Nhập mật khẩu mới" >
-            <p>Mật khẩu mới</p>
-            <input type="password" v-model="changePass.newPassword" class="pass"  placeholder="Nhập mật khẩu mới" >
-            <button class="change" @click.prevent="submit" >Đổi mật khẩu</button>
-        </form>
-      </div>
+  <div class="container">
+    <navbar />
+    <tableft />
+    <div class="content">
+      <form class="form">
+        <h2>Đổi Mật khẩu</h2>
+        <p>Mật khẩu cũ</p>
+        <input type="password" v-model="changePass.oldPassword" class="pass" placeholder="Nhập mật khẩu cũ">
+        <p>Mật khẩu mới</p>
+        <input type="password" v-model="changePass.newPassword" class="pass" placeholder="Nhập mật khẩu mới">
+        <button class="change" @click.prevent="submit">Đổi mật khẩu</button>
+      </form>
     </div>
-  </template>
-  
-  <script>
-  
-  export default {
-    components: {
-    },
-    data(){
-      return{
-        changePass: {
-          citizen_id: '',
-          oldPassword: '',
-          newPassword: ''
-        }
-      }
-    },
-    // middleware: 'auth',
-    mounted(){
-      this.changePass.citizen_id = localStorage.getItem('id');
-    },
-    methods:{
-      test: function(){
-        console.log('test1');
-      }
-      ,
-      async submit() {
-      try {
-        console.log('test1')
-        console.log(this.changePass);
-        await this.$axios
-          .put("http://localhost:8080/api/v1/auth/changePasswordd", this.changePass
-          )
-          .then((res) => {
-            
-            
-            this.$router.push("/citizen");
-            
-          });
-        console.log(this.changePass);
-      } catch (error) {
-        console.log('test3')
-        console.log(error);
-      }
-    },
-    }
+  </div>
+</template>
 
+<script>
+import Navbar from '../../../components/Navbar.vue';
+import Tableft from '../../../components/Tableft.vue';
+export default {
+  components: {
+    Navbar,
+ Tableft },
+  data() 
+    {
+    return {
+      changePass: {
+        citizen_id: '',
+        oldPassword: '',
+        newPassword: ''
+      }
+    }
+  },
+  mounted() {
+    this.changePass.citizen_id = localStorage.getItem('id');
+  },
+  methods: {
+    async submit() {
+      try {
+        if (this.changePass.oldPassword === this.changePass.newPassword) {
+          alert('Mật khẩu mới không được giống mật khẩu cũ');
+          return;
+        }
+        await this.$axios.put('http://localhost:8080/api/v1/auth/changePassword', this.changePass);
+        this.$router.push('/citizen');
+      } catch (error) {
+        console.log(error);
+        alert('Đã có lỗi xảy ra khi đổi mật khẩu. Vui lòng thử lại sau.');
+      }
+    }
   }
-  </script>
+}
+</script>
+
   
   <style scoped>
     body{
@@ -74,7 +67,8 @@
     }
   
     .container{
-      margin-left: 280px;
+      display: block;
+      margin-left:auto;
     }
   
     .content{

@@ -164,6 +164,7 @@ ul li {
     background-color: #127E23;
     color: #fff;
     z-index: 9;
+        font-family: 'Mulish';
 }
 
 .tableft h3 {
@@ -177,18 +178,18 @@ ul li {
     position: relative;
     top: 10px;
     left: -60px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     transition: all 0.5s linear;
 }
 
 .tableft__manage--options li {
-    padding: 5px 0px 0px 100px;
-    width: 162px;
+    padding: 5px 0px 10px 85px;
+    width: 176.5px;
     visibility: hidden;
     opacity: 0;
     display: none;
     transform: translateY(-100%);
-    /* animation: manage 0.7s ease forwards; */
+  
 }
 
 .manage__icon--arrow {
@@ -205,7 +206,7 @@ ul li {
     visibility: visible;
     display: block;
     transform: translateY(0);
-    padding-bottom: 0;
+    padding-bottom: 7px;
 }
 
 .manage--option:hover .manage__icon--arrow {
